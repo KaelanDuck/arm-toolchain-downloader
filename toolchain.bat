@@ -1,3 +1,14 @@
+<# ::
+@echo off
+set ps1="%TEMP%\%RANDOM%%RANDOM%-%~n0.ps1"
+copy /y "%~f0" %ps1% >NUL && powershell -NoProfile -ExecutionPolicy Bypass -File %ps1% %*
+set ec=%ERRORLEVEL% & del %ps1%
+exit /b %ec%
+#>
+
+# powershell runs from this line
+
+
 $ErrorActionPreference = "Stop"
 
 $paths = "$pwd\toolchain\gcc-arm\bin",
